@@ -6,6 +6,11 @@ import dev.jmsg.notes.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        Thread.sleep(1000)
+
+        setTheme(R.style.Theme_Notes)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

@@ -11,10 +11,18 @@
         android:label="Notes">
         <action
             android:id="@+id/action_mainFragment_to_addNoteFragment"
-            app:destination="@id/addNoteFragment" />
+            app:destination="@id/addNoteFragment"
+            app:enterAnim="@anim/from_fab_to_add"
+            app:exitAnim="@anim/from_add_to_main"
+            app:popEnterAnim="@anim/from_fab_to_add"
+            app:popExitAnim="@anim/from_add_to_main" />
         <action
             android:id="@+id/action_mainFragment_to_editNoteFragment"
-            app:destination="@id/editNoteFragment" />
+            app:destination="@id/editNoteFragment"
+            app:enterAnim="@anim/from_noteitem_to_edit"
+            app:exitAnim="@anim/from_edit_to_main"
+            app:popEnterAnim="@anim/from_noteitem_to_edit"
+            app:popExitAnim="@anim/from_edit_to_main" />
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"

@@ -20,4 +20,8 @@
         <item name="cardBackgroundColor">@color/primaryLightColor</item>
         <item name="cardElevation">2dp</item>
     </style>
+
+    <style name="Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 </resources>
