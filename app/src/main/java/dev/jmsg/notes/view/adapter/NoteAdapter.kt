@@ -1,7 +1,9 @@
 package dev.jmsg.notes.view.adapter
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +24,7 @@ class NoteAdapter(context: Context?) : RecyclerView.Adapter<NoteViewHolder>() {
     var selected = ArrayList<Note>()
     private var tracker: SelectionTracker<Long>? = null
     var noteViewModel: NoteViewModel? = null
+    val context = context
     init {
         setHasStableIds(true)
         noteViewModel = NoteViewModel(context?.applicationContext as Application)
@@ -33,6 +36,8 @@ class NoteAdapter(context: Context?) : RecyclerView.Adapter<NoteViewHolder>() {
         return NoteViewHolder(view)
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         var note: Note? = listNote?.get(position)
         holder.note = note
@@ -41,9 +46,21 @@ class NoteAdapter(context: Context?) : RecyclerView.Adapter<NoteViewHolder>() {
 
         if(tracker!!.isSelected(position.toLong())) {
             holder.card.setChecked(true)
+            holder.card.setCardBackgroundColor(context!!.getColor(R.color.primaryDarkColor));
             selected.add(note!!)
         } else {
             holder.card.setChecked(false)
+            val ui = context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
+            when(ui){
+                Configuration.UI_MODE_NIGHT_NO->{
+                    holder.card.setCardBackgroundColor(context!!.getColor(R.color.primaryLightColor));
+                }
+
+                Configuration.UI_MODE_NIGHT_YES->{
+                    holder.card.setCardBackgroundColor(context!!.getColor(R.color.Dark_primaryLightColor));
+                }
+            }
+//
             selected.remove(note!!)
         }
 

@@ -21,6 +21,8 @@ import dev.jmsg.notes.viewmodel.NoteViewModel
 import android.view.*
 import androidx.recyclerview.selection.*
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.card.MaterialCardView
 import dev.jmsg.notes.view.viewholder.LookupClass
 
@@ -34,6 +36,8 @@ class MainFragment : Fragment() {
     lateinit var rvNote : RecyclerView
     lateinit var noteAdapter: NoteAdapter
     lateinit var tracker: SelectionTracker<Long>
+    lateinit var collapsingToolbar: CollapsingToolbarLayout
+    lateinit var appbar: AppBarLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,6 +96,9 @@ class MainFragment : Fragment() {
             })
 
         toolbar = view.findViewById(R.id.toolbar)
+        collapsingToolbar = view.findViewById(R.id.collapsing);
+        appbar = view.findViewById(R.id.appbar)
+
         var navController = Navigation.findNavController(view)
         var appBarConfiguration: AppBarConfiguration = AppBarConfiguration.Builder(navController.graph).build()
         NavigationUI.setupWithNavController(toolbar, navController,appBarConfiguration)
@@ -100,6 +107,25 @@ class MainFragment : Fragment() {
         fab?.setOnClickListener{
             NavHostFragment.findNavController(this).navigate(R.id.action_mainFragment_to_addNoteFragment)
         }
+
+        appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
+            internal var isShow = false
+            internal var scrollRange = -1
+
+            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.totalScrollRange
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.title = "Notes"
+                    isShow = true
+                } else if (isShow) {
+                    collapsingToolbar.title = " "
+                    isShow = false
+                }
+            }
+        })
+
 
     }
 
@@ -133,6 +159,7 @@ class MainFragment : Fragment() {
         }
 
         override fun onDestroyActionMode(p0: ActionMode?) {
+            tracker.clearSelection()
             actionMode = null
         }
 
