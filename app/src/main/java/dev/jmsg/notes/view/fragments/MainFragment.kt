@@ -38,7 +38,7 @@ class MainFragment : Fragment() {
     lateinit var tracker: SelectionTracker<Long>
     lateinit var collapsingToolbar: CollapsingToolbarLayout
     lateinit var appbar: AppBarLayout
-
+    var selected = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +94,8 @@ class MainFragment : Fragment() {
                     }
                 }
             })
+
+
 
         toolbar = view.findViewById(R.id.toolbar)
         collapsingToolbar = view.findViewById(R.id.collapsing);
@@ -168,5 +170,7 @@ class MainFragment : Fragment() {
     private fun updateContextualActionBarTitle() {
         actionMode?.title = "${tracker.selection.size()} note(s) selected"
     }
+
+
 
 }

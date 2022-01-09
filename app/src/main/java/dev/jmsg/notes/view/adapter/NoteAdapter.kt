@@ -89,4 +89,6 @@ class NoteAdapter(context: Context?) : RecyclerView.Adapter<NoteViewHolder>() {
        }
     }
 
+
+
 }

@@ -34,44 +34,6 @@ class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
 
     init {
-
-        /*var actionModeCallback: ActionMode.Callback = object: ActionMode.Callback{
-            override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-                mode?.menuInflater?.inflate(R.menu.note_menu,menu)
-                return true
-            }
-
-            override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-                return false
-            }
-
-            override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-                var id = item?.itemId
-
-                if(card.isSelected){
-                    selectedCards.add(note!!)
-                    Log.v(":::X",note?.title!!)
-                }
-
-                when(id){
-                    R.id.delete_option -> {
-                        var noteViewModel = NoteViewModel(some as Application)
-                        noteViewModel.deleteNote(note!!)
-                        mode?.finish()
-                        card.setChecked(false)
-                        return true
-                    }
-
-                }
-                return false
-            }
-
-            override fun onDestroyActionMode(mode: ActionMode?) {
-                actionMode = null
-                card.setChecked(false)
-            }
-        }*/
-
         card.setOnClickListener{
 
                 var bundle = Bundle()
@@ -83,10 +45,6 @@ class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         }
 
-        /*card.setOnLongClickListener{
-            actionMode = itemView.startActionMode(actionModeCallback)
-            true
-        }*/
 
     }
 
