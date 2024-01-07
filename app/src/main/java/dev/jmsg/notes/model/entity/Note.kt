@@ -18,13 +18,17 @@ data class Note(
     val content: String?,
 
     @ColumnInfo(name="date")
-    val date: String?
+    val date: String?,
+
+    @ColumnInfo(name="category")
+    val category: Int? = 0
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readInt()
     ) {
     }
 

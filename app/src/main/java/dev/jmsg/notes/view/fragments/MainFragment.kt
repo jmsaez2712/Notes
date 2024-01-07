@@ -100,6 +100,7 @@ class MainFragment : Fragment() {
         toolbar = view.findViewById(R.id.toolbar)
         collapsingToolbar = view.findViewById(R.id.collapsing);
         appbar = view.findViewById(R.id.appbar)
+        var fabCategories = view.findViewById<FloatingActionButton>(R.id.fabMain2)
 
         var navController = Navigation.findNavController(view)
         var appBarConfiguration: AppBarConfiguration = AppBarConfiguration.Builder(navController.graph).build()
@@ -108,6 +109,10 @@ class MainFragment : Fragment() {
         fab = giveFab()
         fab?.setOnClickListener{
             NavHostFragment.findNavController(this).navigate(R.id.action_mainFragment_to_addNoteFragment)
+        }
+
+        fabCategories.setOnClickListener{
+            NavHostFragment.findNavController(this).navigate(R.id.action_mainFragment_to_addCategoryFragment)
         }
 
         appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {

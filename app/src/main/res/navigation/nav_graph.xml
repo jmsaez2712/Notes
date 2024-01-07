@@ -22,6 +22,9 @@
             app:exitAnim="@anim/from_edit_to_main"
             app:popEnterAnim="@anim/from_noteitem_to_edit"
             app:popExitAnim="@anim/from_edit_to_main" />
+        <action
+            android:id="@+id/action_mainFragment_to_addCategoryFragment"
+            app:destination="@id/addCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
@@ -32,4 +35,9 @@
         android:id="@+id/editNoteFragment"
         android:name="dev.jmsg.notes.view.fragments.EditNoteFragment"
         android:label="Edit Note" />
+    <fragment
+        android:id="@+id/addCategoryFragment"
+        android:name="dev.jmsg.notes.view.fragments.AddCategoryFragment"
+        android:label="New Category"
+        tools:layout="@layout/fragment_add_category" />
 </navigation>
